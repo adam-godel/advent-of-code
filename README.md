@@ -1,2 +1,2 @@
 # AdventOfCode2024
-My solutions for Advent of Code 2024 in C++
+This repository contains my solutions for Advent of Code 2024. I am attempting to solve every day in C++ to better learn the language.
