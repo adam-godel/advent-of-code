@@ -5,11 +5,11 @@
 using namespace std;
 
 int part2(vector<vector<char>> grid) {
-    int i = 0, j = 0;
+    int i = 0, j = -1;
     vector<vector<bool>> antinodes(grid.size(), vector<bool>(grid.at(0).size(), false));
      while (i < grid.size()) {
         do {
-            if (j < grid.at(i).size()) {
+            if (j == -1 || j < grid.at(i).size()) {
                 j++;
             }
             if (j == grid.at(i).size()) {
@@ -55,11 +55,11 @@ int part2(vector<vector<char>> grid) {
 }
 
 int part1(vector<vector<char>> grid) {
-    int i = 0, j = 0;
+    int i = 0, j = -1;
     vector<vector<bool>> antinodes(grid.size(), vector<bool>(grid.at(0).size(), false));
     while (i < grid.size()) {
         do {
-            if (j < grid.at(i).size()) {
+            if (j == -1 || j < grid.at(i).size()) {
                 j++;
             }
             if (j == grid.at(i).size()) {
