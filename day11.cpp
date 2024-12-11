@@ -37,7 +37,7 @@ int part1(vector<long> data) {
     return data.size();
 }
 
-unsigned long long part2(vector<long> data) {
+unsigned long part2(vector<long> data) {
     map<long, long> counts;
     for (long l: data)
         counts[l] = 1;
@@ -56,7 +56,7 @@ unsigned long long part2(vector<long> data) {
         }
         counts = newCounts;
     }
-    unsigned long long result = 0;
+    unsigned long result = 0;
     for (auto stone: counts)
         result += stone.second;
     return result;
