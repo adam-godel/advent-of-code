@@ -26,7 +26,7 @@ int part2(vector<vector<int>> data) {
         pos.push_back({i.at(0), i.at(1)});
         vel.push_back({i.at(2), i.at(3)});
     }
-    for (int k = 0; k < 10000; k++) {
+    for (int k = 0; k < WIDTH*HEIGHT; k++) {
         pos = oneSecond(pos, vel, WIDTH, HEIGHT);
         double meanX = 0.0, meanY = 0.0;
         for (array<int,2> i: pos)
@@ -38,7 +38,8 @@ int part2(vector<vector<int>> data) {
         varX /= pos.size(), varY /= pos.size();
         variance.push_back({varX,varY});
     }
-    int min = INT_MAX, minSec = 0;
+    double min = INT_MAX;
+    int minSec = 0;
     for (int i = 0; i < variance.size(); i++) {
         if (sqrt(pow(variance.at(i).at(0),2)+pow(variance.at(i).at(1),2)) < min) {
             min = sqrt(pow(variance.at(i).at(0),2)+pow(variance.at(i).at(1),2));
