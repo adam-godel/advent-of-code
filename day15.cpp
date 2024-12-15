@@ -4,10 +4,9 @@
 #include <vector>
 using namespace std;
 
-bool makeMove(vector<vector<char>> &grid, int ci, int cj, char instr) {
+bool makeMove(vector<vector<char>> &grid, int ci, int cj, int dir) {
     const int dirs[4][2] = {{1,0},{0,-1},{-1,0},{0,1}};
-    int dir = string("v<^>").find(instr);
-    if ((grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) != '[' || (makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1]+1, instr) && makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1], instr))) && (grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) != ']' || (makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1]-1, instr) && makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1], instr))) && (grid.at(ci).at(cj) != 'O' || makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1], instr)) && grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) != '#') {
+    if ((grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) != '[' || (makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1]+1, dir) && makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1], dir))) && (grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) != ']' || (makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1]-1, dir) && makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1], dir))) && (grid.at(ci).at(cj) != 'O' || makeMove(grid, ci+dirs[dir][0], cj+dirs[dir][1], dir)) && grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) != '#') {
         char temp = grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]);
         grid.at(ci+dirs[dir][0]).at(cj+dirs[dir][1]) = grid.at(ci).at(cj);
         grid.at(ci).at(cj) = temp;
@@ -46,7 +45,7 @@ int part2(vector<vector<char>> grid, vector<char> instructions) {
         const int dirs[4][2] = {{1,0},{0,-1},{-1,0},{0,1}};
         int dir = string("v<^>").find(i);
         vector<vector<char>> oldGrid(grid);
-        if (makeMove(grid, ci, cj, i))
+        if (makeMove(grid, ci, cj, dir))
             ci += dirs[dir][0], cj += dirs[dir][1];
         else
             grid = oldGrid;
