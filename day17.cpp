@@ -32,9 +32,8 @@ bool find(vector<int> instructions, long toTest, int idx, long &result) {
         return true;
     }
     for (int j = 0; j < 8; j++)
-        if (step(toTest*8+j) == instructions.at(idx))
-            if (find(instructions, toTest*8+j, idx-1, result))
-                return true;
+        if (step(toTest*8+j) == instructions.at(idx) && find(instructions, toTest*8+j, idx-1, result))
+            return true;
     return false;
 }
 
